@@ -13,7 +13,7 @@ class DrogonConan(ConanFile):
     options = {"shared": [True, False], "fPIC": [True, False]}
     default_options = {"shared": False, "fPIC": True}
     generators = "cmake", "cmake_find_package", "cmake_paths"
-    requires = ["trantor/1.2.0", "jsoncpp/1.9.4", "libuuid/1.0.3", "zlib/1.2.11", "brotli/1.0.9", "libpq/13.1", "mariadb-connector-c/3.1.11", "sqlite3/3.34.0"]
+    requires = ["openssl/1.1.1i", "trantor/1.2.0", "jsoncpp/1.9.4", "libuuid/1.0.3", "zlib/1.2.11", "brotli/1.0.9", "libpq/13.1", "mariadb-connector-c/3.1.11", "sqlite3/3.34.0"]
 
     def config_options(self):
         if self.settings.os == "Windows":
