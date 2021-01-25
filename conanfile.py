@@ -30,6 +30,8 @@ include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 include(${CMAKE_BINARY_DIR}/conan_paths.cmake)
 set(CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR} ${CMAKE_MODULE_PATH})''')
+        
+        tools.replace_in_file("drogon/CMakeLists.txt", "add_subdirectory(trantor)", '''# add_subdirectory(trantor)''')
 
     def build(self):
         cmake = CMake(self)
