@@ -1,11 +1,11 @@
 #include <iostream>
-#include <drogon/utils/Utilities.h>
+#include <drogon/drogon.h>
 
 using namespace std;
 using namespace drogon;
 
 int main(int atgc, char* argv[]) 
 {
-    cout << "RandomString: " << utils::genRandomString(10) <<endl;
+    cout << "Drogon Version: " << getVersion() << ". GitCommit: " << getGitCommit() <<endl;
     return 0;
 }
