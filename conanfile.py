@@ -13,7 +13,7 @@ class DrogonConan(ConanFile):
     options = {"shared": [True, False], "fPIC": [True, False]}
     default_options = {"shared": False, "fPIC": True}
     generators = "cmake", "cmake_find_package", "cmake_paths"
-    requires = ["openssl/1.1.1i", "c-ares/1.17.1", "trantor/1.2.0", "jsoncpp/1.9.4", "libuuid/1.0.3", "zlib/1.2.11", "brotli/1.0.9", "libpq/13.1", "mariadb-connector-c/3.1.11", "sqlite3/3.34.0"]
+    requires = ["openssl/1.1.1i", "trantor/1.2.0", "jsoncpp/1.9.4", "libuuid/1.0.3", "zlib/1.2.11", "brotli/1.0.9", "libpq/13.1", "mariadb-connector-c/3.1.11", "sqlite3/3.34.0"]
 
     def config_options(self):
         if self.settings.os == "Windows":
@@ -32,6 +32,19 @@ include(${CMAKE_BINARY_DIR}/conan_paths.cmake)
 set(CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR} ${CMAKE_MODULE_PATH})''')
         
         tools.replace_in_file("drogon/CMakeLists.txt", "add_subdirectory(trantor)", '''# add_subdirectory(trantor)''')
+        tools.replace_in_file("drogon/CMakeLists.txt", "target_link_libraries(${PROJECT_NAME} PUBLIC trantor)", '''target_link_libraries(${PROJECT_NAME} PUBLIC trantor ${CONAN_LIBS})''')
+        tools.replace_in_file("drogon/CMakeLists.txt", "target_link_libraries(${PROJECT_NAME} PRIVATE dl)", '''target_link_libraries(${PROJECT_NAME} PRIVATE dl  ${CONAN_LIBS})''')
+        tools.replace_in_file("drogon/CMakeLists.txt", "target_link_libraries(${PROJECT_NAME} PRIVATE shlwapi)", '''target_link_libraries(${PROJECT_NAME} PRIVATE shlwapi ${CONAN_LIBS})''')
+        tools.replace_in_file("drogon/CMakeLists.txt", "target_link_libraries(${PROJECT_NAME} PUBLIC Boost::boost)", '''target_link_libraries(${PROJECT_NAME} PUBLIC Boost::boost  ${CONAN_LIBS})''')
+        tools.replace_in_file("drogon/CMakeLists.txt", "target_link_libraries(${PROJECT_NAME} PUBLIC Jsoncpp_lib)", '''target_link_libraries(${PROJECT_NAME} PUBLIC Jsoncpp_lib  ${CONAN_LIBS})''')
+        tools.replace_in_file("drogon/CMakeLists.txt", "target_link_libraries(${PROJECT_NAME} PRIVATE UUID_lib)", '''target_link_libraries(${PROJECT_NAME} PRIVATE UUID_lib  ${CONAN_LIBS})''')
+        tools.replace_in_file("drogon/CMakeLists.txt", "target_link_libraries(${PROJECT_NAME} PRIVATE Brotli_lib)", '''target_link_libraries(${PROJECT_NAME} PRIVATE Brotli_lib  ${CONAN_LIBS})''')
+        tools.replace_in_file("drogon/CMakeLists.txt", "target_link_libraries(${PROJECT_NAME} PRIVATE pg_lib)", '''target_link_libraries(${PROJECT_NAME} PRIVATE pg_lib  ${CONAN_LIBS})''')
+        tools.replace_in_file("drogon/CMakeLists.txt", "target_link_libraries(${PROJECT_NAME} PRIVATE MySQL_lib)", '''target_link_libraries(${PROJECT_NAME} PRIVATE MySQL_lib  ${CONAN_LIBS})''')
+        tools.replace_in_file("drogon/CMakeLists.txt", "target_link_libraries(${PROJECT_NAME} PRIVATE SQLite3_lib)", '''target_link_libraries(${PROJECT_NAME} PRIVATE SQLite3_lib  ${CONAN_LIBS})''')
+        tools.replace_in_file("drogon/CMakeLists.txt", "target_link_libraries(${PROJECT_NAME} PRIVATE ZLIB::ZLIB)", '''target_link_libraries(${PROJECT_NAME} PRIVATE ZLIB::ZLIB  ${CONAN_LIBS})''')
+        tools.replace_in_file("drogon/CMakeLists.txt", "target_link_libraries(${PROJECT_NAME} PRIVATE OpenSSL::SSL OpenSSL::Crypto)", '''target_link_libraries(${PROJECT_NAME} PRIVATE OpenSSL::SSL OpenSSL::Crypto  ${CONAN_LIBS})''')
+        tools.replace_in_file("examples/CMakeLists.txt", "link_libraries(${PROJECT_NAME})", '''link_libraries(${PROJECT_NAME} ${CONAN_LIBS})''')
 
     def build(self):
         cmake = CMake(self)
