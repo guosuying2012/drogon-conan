@@ -48,7 +48,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR} ${CMAKE_MODULE_PATH})''')
         tools.replace_in_file("drogon/examples/CMakeLists.txt", "link_libraries(${PROJECT_NAME})", '''link_libraries(${PROJECT_NAME} ${CONAN_LIBS})''')
         tools.replace_in_file("drogon/examples/CMakeLists.txt", "${PROJECT_SOURCE_DIR}/trantor/trantor/tests/server.pem", ''' ''')
 
-        if !self.options.shared:
+        if not self.options.shared:
         	tools.replace_in_file("drogon/cmake_modules/FindBrotli.cmake", "find_library(BROTLICOMMON_LIBRARY NAMES brotlicommon)", '''find_library(BROTLICOMMON_LIBRARY NAMES brotlicommon-static)''')
         	tools.replace_in_file("drogon/cmake_modules/FindBrotli.cmake", "find_library(BROTLIDEC_LIBRARY NAMES brotlidec)", '''find_library(BROTLIDEC_LIBRARY NAMES brotlidec-static)''')
         	tools.replace_in_file("drogon/cmake_modules/FindBrotli.cmake", "find_library(BROTLIENC_LIBRARY NAMES brotlienc)", '''find_library(BROTLIENC_LIBRARY NAMES brotlienc-static)''')
