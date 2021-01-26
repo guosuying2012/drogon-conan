@@ -44,7 +44,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR} ${CMAKE_MODULE_PATH})''')
         tools.replace_in_file("drogon/CMakeLists.txt", "target_link_libraries(${PROJECT_NAME} PRIVATE SQLite3_lib)", '''target_link_libraries(${PROJECT_NAME} PRIVATE SQLite3_lib  ${CONAN_LIBS})''')
         tools.replace_in_file("drogon/CMakeLists.txt", "target_link_libraries(${PROJECT_NAME} PRIVATE ZLIB::ZLIB)", '''target_link_libraries(${PROJECT_NAME} PRIVATE ZLIB::ZLIB  ${CONAN_LIBS})''')
         tools.replace_in_file("drogon/CMakeLists.txt", "target_link_libraries(${PROJECT_NAME} PRIVATE OpenSSL::SSL OpenSSL::Crypto)", '''target_link_libraries(${PROJECT_NAME} PRIVATE OpenSSL::SSL OpenSSL::Crypto  ${CONAN_LIBS})''')
-        tools.replace_in_file("examples/CMakeLists.txt", "link_libraries(${PROJECT_NAME})", '''link_libraries(${PROJECT_NAME} ${CONAN_LIBS})''')
+        tools.replace_in_file("drogon/examples/CMakeLists.txt", "link_libraries(${PROJECT_NAME})", '''link_libraries(${PROJECT_NAME} ${CONAN_LIBS})''')
 
     def build(self):
         cmake = CMake(self)
