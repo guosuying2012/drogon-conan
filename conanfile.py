@@ -32,7 +32,6 @@ class DrogonConan(ConanFile):
         # properly
         tools.replace_in_file("drogon/CMakeLists.txt", "project(drogon)",
                               '''project(drogon)
-                              set(CMAKE_CXX_STANDARD 17)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 include(${CMAKE_BINARY_DIR}/conan_paths.cmake)
