@@ -18,8 +18,7 @@ class DrogonConan(ConanFile):
     def config_options(self):
         if self.settings.os == "Windows":
             del self.options.fPIC
-            # del self.requires[3]
-            print(self.requires.indexOf("libuuid/1.0.3"))
+            print(self.requires)
             pass
 
     def source(self):
