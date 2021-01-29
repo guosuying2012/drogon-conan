@@ -68,17 +68,20 @@ set(CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR} ${CMAKE_MODULE_PATH})''')
             tools.replace_in_file("drogon/CMakeLists.txt", "target_link_libraries(${PROJECT_NAME} PRIVATE ZLIB::ZLIB)", '''target_link_libraries(${PROJECT_NAME} PRIVATE ZLIB::ZLIB  ${CONAN_LIBS} Rpcrt4)''')
             tools.replace_in_file("drogon/CMakeLists.txt", "target_link_libraries(${PROJECT_NAME} PRIVATE OpenSSL::SSL OpenSSL::Crypto)", '''target_link_libraries(${PROJECT_NAME} PRIVATE OpenSSL::SSL OpenSSL::Crypto  ${CONAN_LIBS} Rpcrt4)''')
             tools.replace_in_file("drogon/examples/CMakeLists.txt", "link_libraries(${PROJECT_NAME})", '''link_libraries(${PROJECT_NAME} ${CONAN_LIBS} Rpcrt4)''')
-            pass
+        pass
 
 
         if not self.options.shared:
         	tools.replace_in_file("drogon/cmake_modules/FindBrotli.cmake", "find_library(BROTLICOMMON_LIBRARY NAMES brotlicommon)", '''find_library(BROTLICOMMON_LIBRARY NAMES brotlicommon-static)''')
         	tools.replace_in_file("drogon/cmake_modules/FindBrotli.cmake", "find_library(BROTLIDEC_LIBRARY NAMES brotlidec)", '''find_library(BROTLIDEC_LIBRARY NAMES brotlidec-static)''')
         	tools.replace_in_file("drogon/cmake_modules/FindBrotli.cmake", "find_library(BROTLIENC_LIBRARY NAMES brotlienc)", '''find_library(BROTLIENC_LIBRARY NAMES brotlienc-static)''')
-        	pass
+        pass
 
     def build(self):
         cmake = CMake(self)
+        if self.options.shared:
+            cmake.definitions["BUILD_DROGON_SHARED"] = "On"
+            pass
         cmake.configure(source_folder="drogon")
         cmake.build()
 
