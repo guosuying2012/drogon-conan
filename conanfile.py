@@ -13,7 +13,7 @@ class DrogonConan(ConanFile):
     options = {"shared": [True, False], "fPIC": [True, False]}
     default_options = {"shared": False, "fPIC": True}
     generators = "cmake", "cmake_find_package", "cmake_paths"
-    requires = ["openssl/1.1.1i", "trantor/1.3.0", "jsoncpp/1.9.4", "zlib/1.2.11", "brotli/1.0.9", "libpq/13.1", "mariadb-connector-c/3.1.11", "sqlite3/3.34.0"]
+    requires = ["openssl/1.1.1i", "trantor/1.3.0", "jsoncpp/1.9.4", "zlib/1.2.11", "brotli/1.0.9", "libpq/13.1", "mariadb-connector-c/3.1.11", "sqlite3/3.34.0", "hiredis/1.0.0"]
 
     def config_options(self):
         if self.settings.os == "Windows":
@@ -95,6 +95,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR} ${CMAKE_MODULE_PATH})''')
         self.copy("*.h", dst="include/drogon/utils", src="drogon/lib/inc/drogon/utils", keep_path=False)
         self.copy("*.h", dst="include/drogon/plugins", src="drogon/lib/inc/drogon/plugins", keep_path=False)
         self.copy("*.h", dst="include/drogon/orm", src="drogon/orm_lib/inc", keep_path=False)
+        self.copy("*.h", dst="include/drogon/no_sql", src="drogon/nosql_lib/redis/inc/drogon/nosql/", keep_path=False)
         self.copy("*.lib", dst="lib", keep_path=False)
         self.copy("*.dll", dst="bin", keep_path=False)
         self.copy("drogon_ctl*", dst="bin", src="bin", keep_path=False)
