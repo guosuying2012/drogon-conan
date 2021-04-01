@@ -83,7 +83,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR} ${CMAKE_MODULE_PATH})''')
             cmake.definitions["BUILD_DROGON_SHARED"] = "On"
             pass
         cmake.configure(source_folder="drogon")
-        cmake.build()
+        cmake.build(self, "-j2")
 
         # Explicit way:
         # self.run('cmake %s/drogon %s'
