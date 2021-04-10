@@ -3,7 +3,7 @@ from conans import ConanFile, CMake, tools
 
 class DrogonConan(ConanFile):
     name = "drogon"
-    version = "1.4.1"
+    version = "1.5.0"
     license = "MIT"
     author = "an-tao"
     url = "https://github.com/an-tao/drogon"
