@@ -3,7 +3,7 @@ from conans import ConanFile, CMake, tools
 
 class DrogonConan(ConanFile):
     name = "drogon"
-    version = "1.4.1"
+    version = "1.6.0"
     license = "MIT"
     author = "an-tao"
     url = "https://github.com/an-tao/drogon"
@@ -13,7 +13,7 @@ class DrogonConan(ConanFile):
     options = {"shared": [True, False], "fPIC": [True, False]}
     default_options = {"shared": False, "fPIC": True}
     generators = "cmake", "cmake_find_package", "cmake_paths"
-    requires = ["openssl/1.1.1i", "trantor/1.3.0", "jsoncpp/1.9.4", "zlib/1.2.11", "brotli/1.0.9", "libpq/13.1", "mariadb-connector-c/3.1.11", "sqlite3/3.34.0", "hiredis/1.0.0"]
+    requires = ["openssl/1.1.1i", "trantor/1.4.1", "jsoncpp/1.9.4", "zlib/1.2.11", "brotli/1.0.9", "libpq/13.1", "mariadb-connector-c/3.1.11", "sqlite3/3.34.0", "hiredis/1.0.0"]
 
     def config_options(self):
         if self.settings.os == "Windows":
