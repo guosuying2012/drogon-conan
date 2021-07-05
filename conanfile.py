@@ -38,7 +38,7 @@ include(${CMAKE_BINARY_DIR}/conan_paths.cmake)
 set(CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR} ${CMAKE_MODULE_PATH})''')
         
         tools.replace_in_file("drogon/CMakeLists.txt", "add_subdirectory(trantor)", '''# add_subdirectory(trantor)''')
-        tools.replace_in_file("drogon/examples/CMakeLists.txt", "${PROJECT_SOURCE_DIR}/trantor/trantor/tests/server.pem", ''' ''')
+        # tools.replace_in_file("drogon/examples/CMakeLists.txt", "${PROJECT_SOURCE_DIR}/trantor/trantor/tests/server.pem", ''' ''')
 
         if self.settings.os != "Windows":
             tools.replace_in_file("drogon/CMakeLists.txt", "target_link_libraries(${PROJECT_NAME} PUBLIC trantor)", '''target_link_libraries(${PROJECT_NAME} PUBLIC trantor ${CONAN_LIBS})''')
